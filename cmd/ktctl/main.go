@@ -47,7 +47,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = "KT Connect"
 	app.Usage = ""
-	app.Version = "0.0.5"
+	app.Version = "0.0.6"
 	app.Authors = []cli.Author{
 		cli.Author{
 			Name: "rdc incubator",
@@ -68,7 +68,7 @@ func main() {
 		cli.StringFlag{
 			Name:        "image,i",
 			Usage:       "Custom proxy image",
-			Value:       "registry.cn-shanghai.aliyuncs.com/kube-helm/kube-proxy:1560842881",
+			Value:       "registry.cn-hangzhou.aliyuncs.com/rdc-incubator/kt-connect-shadow:stable",
 			Destination: &image,
 		},
 		cli.BoolFlag{

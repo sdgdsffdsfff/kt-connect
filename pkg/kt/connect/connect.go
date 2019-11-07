@@ -74,9 +74,10 @@ func (c *Connect) GetClientSet() (clientset *kubernetes.Clientset, err error) {
 	return
 }
 
-// PrepareSSHPrivateKey
+// PrepareSSHPrivateKey generator ssh private key
 func (connect *Connect) PrepareSSHPrivateKey() (err error) {
-	err = ioutil.WriteFile("/tmp/kt_id_rsa", pk, 400)
+	privateKey := util.PrivateKeyPath()
+	err = ioutil.WriteFile(privateKey, pk, 400)
 	if err != nil {
 		log.Printf("Fails create temp ssh private key")
 	}

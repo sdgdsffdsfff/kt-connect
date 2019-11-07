@@ -1,0 +1,17 @@
+NAMESPACE=${NAMESPACE:-registry.cn-hangzhou.aliyuncs.com/rdc-incubator}
+CTL_REPO=${CTL_REPO:-kt-connect}
+TAG=${TAG:-latest}
+
+echo "======== move artifacts======="
+mkdir -p artifacts
+docker run -v $PWD/artifacts:/artifacts --rm --entrypoint cp ${NAMESPACE}/${CTL_REPO}:${TAG} -r /go/src/github.com/alibaba/kt-connect/output/ktctl /artifacts
+
+echo "======== archive artifacts======="
+ls -al artifacts/ktctl
+cd artifacts/ktctl
+sudo tar zcvf ktctl_darwin_amd64.tar.gz ktctl_darwin_amd64
+sudo tar zcvf ktctl_darwin_386.tar.gz ktctl_darwin_386
+sudo tar zcvf ktctl_linux_amd64.tar.gz ktctl_linux_amd64
+sudo tar zcvf ktctl_linux_386.tar.gz ktctl_linux_386
+# sudo tar zcvf ktctl_windows_386.tar.gz ktctl_windows_386.exe
+# sudo tar zcvf ktctl_windows_amd64.tar.gz ktctl_windows_amd64.exe
